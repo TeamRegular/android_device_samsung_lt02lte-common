@@ -47,7 +47,7 @@ bin/qmiproxy
 bin/qmuxd
 bin/rild
 bin/rmt_storage
-bin/sec-ril
+#bin/sec-ril
 lib/libatparser.so
 lib/libcordon.so
 lib/libdiag.so

@@ -25,7 +25,7 @@
 
 TARGET_ADDITIONAL_BOOTCLASSPATH := qcmediaplayer:qcom.fmradio
 
-TARGET_SPECIFIC_HEADER_PATH := device/samsung/serrano-common/include
+TARGET_SPECIFIC_HEADER_PATH := device/samsung/lt02lte-common/include
 
 # FM radio
 COMMON_GLOBAL_CFLAGS += -DQCOM_FM_ENABLED
@@ -36,29 +36,30 @@ BOARD_KERNEL_BASE            := 0x80200000
 BOARD_MKBOOTIMG_ARGS         := --ramdisk_offset 0x02000000
 BOARD_KERNEL_PAGESIZE        := 2048
 TARGET_KERNEL_SOURCE         := kernel/samsung/msm8930-common
-TARGET_KERNEL_CONFIG         := cyanogen_serrano_defconfig
+TARGET_KERNEL_CONFIG         := cyanogen_lt02_defconfig
 TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
 
 TARGET_BOOTLOADER_BOARD_NAME := MSM8960
 
 # Recovery
-BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/serrano-common/recovery/recovery_keys.c
+BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/lt02lte-common/recovery/recovery_keys.c
 BOARD_USES_MMCUTILS := true
 BOARD_HAS_NO_MISC_PARTITION := true
-TARGET_RECOVERY_FSTAB := device/samsung/serrano-common/rootdir/fstab.qcom
-TARGET_RECOVERY_INITRC := device/samsung/serrano-common/rootdir/init.recovery.rc
+TARGET_RECOVERY_FSTAB := device/samsung/lt02lte-common/rootdir/fstab.qcom
+TARGET_RECOVERY_INITRC := device/samsung/lt02lte-common/rootdir/init.recovery.rc
 TARGET_RECOVERY_LCD_BACKLIGHT_PATH := \"/sys/class/lcd/panel/backlight\"
 
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_BOOTIMAGE_PARTITION_SIZE := 10485760
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 10485760
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1572864000
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 5821676544
-BOARD_CACHEIMAGE_PARTITION_SIZE := 209715200
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1782579200
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 13237206016
+BOARD_CACHEIMAGE_PARTITION_SIZE := 524288000
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/serrano-common/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/lt02lte-common/bluetooth
+BOARD_BLUEDROID_VENDOR_CONF := device/samsung/lt02lte-common/bluetooth/vnd_lt02lte.txt
 
 # NFC
 BOARD_NFC_HAL_SUFFIX := msm8960

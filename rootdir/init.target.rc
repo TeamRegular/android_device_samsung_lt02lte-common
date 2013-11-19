@@ -83,9 +83,9 @@ on fs_selinux
     mount vfat /dev/block/platform/msm_sdcc.1/by-name/modem /firmware ro shortname=lower dmask=0006 fmask=0006 umask=0006,gid=1000,context=u:object_r:firmware:s0
 
 on boot
-    write /sys/devices/i2c-3/3-0024/cyttsp_update_fw 1
-    write /sys/devices/i2c-3/3-005b/update_fw 1
-    start qcamerasvr
+   write /sys/devices/i2c-3/3-0024/cyttsp_update_fw 1
+   write /sys/devices/i2c-3/3-005b/update_fw 1
+   start qcamerasvr
 
 on post-fs-data
     mkdir /data/tombstones 0771 system system
@@ -120,7 +120,7 @@ on post-fs-data
     write /sys/class/input/input6/distortion "400 50 15"
     write /sys/class/input/input7/distortion "400 50 15"
 
-    # geomagnetic_raw
+    # Geomagnetic_raw
     chown compass input /sys/class/input/input4/offsets
     chown compass input /sys/class/input/input4/dynamic_matrix
     chown system input /sys/class/input/input4/threshold
@@ -147,7 +147,7 @@ on post-fs-data
     chown system input /sys/class/input/input8/distortion
     chown system input /sys/class/input/input8/shape
 
-    # light_sensor
+    # Light_sensor
     chown system input /sys/class/input/input7/enable
     chown system input /sys/class/input/input7/poll_delay
     chown system input /sys/class/input/input8/enable
@@ -155,7 +155,7 @@ on post-fs-data
     chown system input /sys/class/input/input9/enable
     chown system input /sys/class/input/input9/poll_delay
 
-    # mpu6500_input
+    # Mpu6500_input
     chown system input /sys/class/input/input3/acc_enable
     chown system input /sys/class/input/input3/acc_delay
     chown system input /sys/class/input/input3/gyro_enable
@@ -172,7 +172,7 @@ on post-fs-data
     chown system input /sys/class/input/input5/gyro_delay
     chown system input /sys/class/input/input5/self_test
 
-    # accelerometer
+    # Accelerometer
     chown system input /sys/class/input/input3/enable
     chown system input /sys/class/input/input3/delay
     chown system input /sys/class/input/input3/filter_enable
@@ -188,7 +188,7 @@ on post-fs-data
     chown system input /sys/class/input/input4/wake
     chown system input /sys/class/input/input4/position
 
-    # geomagnetic
+    # Geomagnetic
     chown system input /sys/class/input/input3/enable
     chown system input /sys/class/input/input3/delay
     chown system input /sys/class/input/input3/filter_enable
@@ -222,12 +222,12 @@ on post-fs-data
     chown system input /sys/class/input/input6/wake
     chown system input /sys/class/input/input6/position
 
-    # proximity_sensor
+    # Proximity_sensor
     chown system input /sys/class/input/input6/enable
     chown system input /sys/class/input/input7/enable
     chown system input /sys/class/input/input8/enable
 
-    # orientation
+    # Orientation
     chown system input /sys/class/input/input5/enable
     chown system input /sys/class/input/input5/delay
     chown system input /sys/class/input/input5/wake
@@ -280,6 +280,34 @@ on post-fs-data
     chmod 0660 /sys/class/android_usb/android0/terminal_version
     chown system system /sys/class/android_usb/android0/terminal_version
 
+    # Alps sensor
+    chown system system /dev/alps_io
+    chmod 0644 /dev/alps_io
+
+    # grip_sensor
+    chown system input /sys/class/input/input8/enable
+    chown system input /sys/class/input/input9/enable
+    chown system input /sys/class/input/input10/enable
+
+    chown system radio /sys/class/sensors/grip_sensor/raw_data
+    chown system radio /sys/class/sensors/grip_sensor/vendor
+    chown system radio /sys/class/sensors/grip_sensor/name
+    chown system radio /sys/class/sensors/grip_sensor/onoff
+    chown system radio /sys/class/sensors/grip_sensor/threshold
+    chown system radio /sys/class/sensors/grip_sensor/calibration
+    chown system radio /sys/class/sensors/grip_sensor/offset
+
+    # grip_sensor (asp01)
+    chown system radio /sys/class/sensors/grip_sensor/reset
+    chown system radio /sys/class/sensors/grip_sensor/erase_cal
+    chown system radio /sys/class/sensors/grip_sensor/cscr_const
+    chown system radio /efs/grip_cal_data
+
+    # NFC
+    setprop ro.nfc.port "I2C"
+    chmod 0777 /dev/pn547
+    chown nfc nfc /dev/pn547
+
     # NFC_BROADCOM
     chmod 0600 /dev/bcm2079x
     chown nfc nfc /dev/bcm2079x
@@ -290,7 +318,7 @@ on post-fs-data
     chown nfc nfc /data/nfc
     chown nfc nfc /data/nfc/param
 
-    # MDNIE
+  # MDNIE
     chown system system  /sys/class/mdnie/mdnie/lcdtype
     chown system system  /sys/class/mdnie/mdnie/lcd_power
     chown system media_rw /sys/class/mdnie/mdnie/scenario
@@ -331,6 +359,20 @@ on post-fs-data
     # Ap thermister permission
     chown system radio /sys/bus/platform/devices/msm8930-tmu/curr_temp
     chmod 664 /sys/bus/platform/devices/msm8930-tmu/curr_temp
+
+    # Vibetonz
+    chmod 0660 /dev/tspdrv
+    chown system system /dev/tspdrv
+    chown system system /sys/class/timed_output/vibrator/pwm_value
+    chmod 0660 /sys/class/timed_output/vibrator/pwm_value
+    chown system system /sys/class/timed_output/vibrator/pwm_max
+    chmod 0660 /sys/class/timed_output/vibrator/pwm_max
+    chown system system /sys/class/timed_output/vibrator/pwm_min
+    chmod 0660 /sys/class/timed_output/vibrator/pwm_min
+    chown system system /sys/class/timed_output/vibrator/pwm_default
+    chmod 0660 /sys/class/timed_output/vibrator/pwm_default
+    chown system system /sys/class/timed_output/vibrator/pwm_threshold
+    chmod 0660 /sys/class/timed_output/vibrator/pwm_threshold
 
     # volume up/down key
     chown radio system /sys/class/sec/sec_key/wakeup_keys
@@ -417,7 +459,7 @@ service qrngd /system/bin/qrngd -f
     group root
 
 service qseecomd /system/bin/qseecomd
-    class late_start
+    class core
     user system
     group system
 
@@ -444,3 +486,9 @@ service bugreport /system/bin/dumpstate -d -p -B \
     disabled
     oneshot
     keycodes 114 115 116
+
+# TVout
+service TvoutService_C /system/bin/bintvoutservice
+    class main
+    user system
+    group system

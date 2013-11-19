@@ -27,39 +27,30 @@ for FILE in `egrep -v '(^#|^$)' ../$DEVICE/device-proprietary-files.txt`; do
   if [ ! -d $BASE/$DIR ]; then
     mkdir -p $BASE/$DIR
   fi
-  if [ "$SRC" = "adb" ]; then
-    adb pull /system/$FILE $BASE/$FILE
-  else
-    cp $SRC/system/$FILE $BASE/$FILE
-  fi
+  # My way of pulling blobs without the device
+  cp ~/android/lt02lte/system/$FILE $BASE/$FILE
 done
 
-for FILE in `egrep -v '(^#|^$)' ../serrano-common/proprietary-files.txt`; do
+for FILE in `egrep -v '(^#|^$)' ../lt02lte-common/proprietary-files.txt`; do
   echo "Extracting /system/$FILE ..."
   DIR=`dirname $FILE`
   if [ ! -d $BASE/$DIR ]; then
     mkdir -p $BASE/$DIR
   fi
-  if [ "$SRC" = "adb" ]; then
-    adb pull /system/$FILE $BASE/$FILE
-  else
-    cp $SRC/system/$FILE $BASE/$FILE
-  fi
+  # My way of pulling blobs without the device
+  cp ~/android/lt02lte/system/$FILE $BASE/$FILE
 done
 
-BASE=../../../vendor/$VENDOR/serrano-common/proprietary
+BASE=../../../vendor/$VENDOR/lt02lte-common/proprietary
 rm -rf $BASE/*
-for FILE in `egrep -v '(^#|^$)' ../serrano-common/common-proprietary-files.txt`; do
+for FILE in `egrep -v '(^#|^$)' ../lt02lte-common/common-proprietary-files.txt`; do
   echo "Extracting /system/$FILE ..."
   DIR=`dirname $FILE`
   if [ ! -d $BASE/$DIR ]; then
     mkdir -p $BASE/$DIR
   fi
-  if [ "$SRC" = "adb" ]; then
-    adb pull /system/$FILE $BASE/$FILE
-  else
-    cp $SRC/system/$FILE $BASE/$FILE
-  fi
+  # My way of pulling blobs without the device
+  cp ~/android/lt02lte/system/$FILE $BASE/$FILE
 done
 
-./../serrano-common/setup-makefiles.sh
+./../lt02lte-common/setup-makefiles.sh
